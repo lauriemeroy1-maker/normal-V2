@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Normade Studio — Content design · 콘텐츠 디자인 · Seoul ↔ Paris</title>
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+:root{
+  --paper:#F9F9F6; --ink:#000; --mute:#77776f; --bar:76px; --sw:48px;
+  --body:"Pretendard Variable",Pretendard,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --display:var(--body); --hand:var(--body);
+  --holes:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='48' height='48'><rect x='14' y='14' width='20' height='20' rx='5' fill='%23F9F9F6'/></svg>");
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:var(--bar)}
+body{font-family:var(--body);background:var(--paper);color:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.ko{word-break:keep-all}
+
+/* ---------- Barre du haut ---------- */
+.top{position:fixed;inset:0 0 auto 0;z-index:2000;height:calc(var(--bar) + env(safe-area-inset-top,0px));display:flex;align-items:center;justify-content:space-between;
+  padding:env(safe-area-inset-top,0px) clamp(16px,4vw,48px) 0;background:var(--paper);border-bottom:1px solid rgba(0,0,0,.08)}
+.logo{font-family:var(--display);font-weight:700;font-size:22px;text-decoration:none;letter-spacing:-.02em}
+.pill{display:flex;gap:4px;padding:5px;border-radius:99px;border:1.5px solid rgba(0,0,0,.15)}
+.pill a{padding:8px 18px;border-radius:99px;text-decoration:none;font-size:15px;font-weight:500;transition:background .2s,color .2s;white-space:nowrap}
+.pill a:hover,.pill a.on{background:var(--ink);color:var(--paper)}
+.pill .ko,.cta .ko{font-size:.86em;opacity:.65;margin-left:4px}
+.cta{background:var(--ink);color:var(--paper);padding:12px 22px;border-radius:99px;font-weight:600;font-size:15px;text-decoration:none;white-space:nowrap}
+@media(max-width:760px){.pill{display:none}}
+
+/* ---------- Page = pellicule ---------- */
+.cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,560px);gap:clamp(24px,5vw,96px);padding:0 0 0 clamp(16px,4vw,48px)}
+.side{position:sticky;top:var(--bar);align-self:start;padding-top:48px}
+.js .side{opacity:0}.loaded .side{opacity:1;transition:opacity .7s .9s}
+
+.side h1{font-family:var(--display);font-weight:700;font-size:clamp(32px,3.3vw,54px);line-height:.98;letter-spacing:-.035em}
+.side h1 .ko{display:block;margin-top:14px;font-size:.42em;font-weight:700;letter-spacing:-.01em;line-height:1.35;color:var(--mute)}
+.side .sub{margin-top:26px;max-width:34ch;font-size:16px;line-height:1.5;color:var(--mute)}
+.side .sub .ko{display:block;margin-top:6px;font-size:15px}
+.hand{font-size:17px;font-weight:500;line-height:1.3;color:var(--mute);margin:22px 0 18px}
+.hand .ko{display:block}
+.ghost{background:none;border:1.5px solid rgba(0,0,0,.4);color:var(--ink);padding:11px 20px;border-radius:99px;font:600 14px var(--body);cursor:pointer;text-align:left}
+.ghost:hover{background:var(--ink);color:var(--paper)}
+.ghost .ko{margin-left:6px;opacity:.65;font-size:.9em}
+
+.services{list-style:none;padding:0;display:flex;flex-wrap:wrap;gap:8px;margin-top:28px;max-width:44ch}
+.services li{padding:7px 14px;border:1.5px solid rgba(0,0,0,.18);border-radius:99px;font-size:14px;font-weight:600}
+.services .ko{margin-left:6px;font-weight:500;color:var(--mute);font-size:.92em}
+
+.strip{position:relative;background:#000;padding:calc(var(--bar) + 24px) var(--sw) 56px;display:grid;gap:28px}
+.js .strip{transform:translateY(-100vh)}
+.loaded .strip{transform:none;transition:transform 1.15s cubic-bezier(.22,.9,.25,1)}
+.strip::before,.strip::after{content:"";position:absolute;top:0;bottom:0;width:var(--sw);background:var(--holes) repeat-y 0 0/var(--sw) var(--sw)}
+.strip::before{left:0}.strip::after{right:0}
+
+.proj{position:relative;aspect-ratio:4/5;border-radius:3px;background:var(--bg);display:flex;align-items:flex-end;color:var(--paper)}
+.proj .info{padding:22px;width:100%;background:linear-gradient(transparent,rgba(0,0,0,.74))}
+.proj h3{font-family:var(--display);font-size:clamp(26px,2.6vw,36px);letter-spacing:-.02em;line-height:1}
+.proj .meta{margin:10px 0 16px;font-size:15px;line-height:1.4;opacity:.92}
+.proj .meta .ko{display:block;font-size:14px;opacity:.8}
+.proj .see{display:inline-block;background:var(--paper);color:var(--ink);padding:9px 18px;border-radius:99px;font-size:14px;font-weight:600;text-decoration:none}
+.proj .see .ko{margin-left:6px;opacity:.65;font-size:.92em}
+.proj .tag{position:absolute;top:14px;right:14px;font-size:14px;font-weight:600;color:#fff;text-align:right;line-height:1.25;background:rgba(0,0,0,.38);padding:6px 10px;border-radius:8px}
+.proj .tag .ko{display:block;font-weight:500;opacity:.85}
+
+/* papier à déchirer : bord irrégulier en clip-path */
+.scrap{position:absolute;inset:0;z-index:3;cursor:grab;touch-action:pan-y;user-select:none;-webkit-user-select:none;
+  transform-origin:50% 0;transition:transform .35s cubic-bezier(.3,1.5,.5,1)}
+.scrap.drag{cursor:grabbing;transition:none}
+.scrap.gone{transition:transform .6s cubic-bezier(.5,0,1,.6),opacity .6s;pointer-events:none}
+.scrap.wiggle{animation:wig .5s}
+@keyframes wig{25%{transform:rotate(-3deg)}60%{transform:rotate(2.5deg)}}
+.sheet{position:absolute;inset:0;display:grid;place-content:center;gap:6px;text-align:center;padding:24px 24px 40px;color:#1d1d1b;background:rgba(251,250,246,.55);
+-webkit-backdrop-filter:blur(10px);
+backdrop-filter:blur(10px);
+  clip-path:polygon(0 0,100% 0,100% 88%,97% 91%,94% 87%,90% 93%,85% 89%,82% 94%,76% 90%,71% 96%,66% 91%,60% 95%,55% 90%,49% 94%,44% 89%,38% 95%,32% 91%,27% 96%,21% 91%,16% 95%,11% 90%,6% 94%,2% 90%,0 93%)}
+.sheet b{font-family:var(--display);font-size:clamp(26px,2.8vw,38px);letter-spacing:-.02em;line-height:1}
+.sheet .ko{font-size:15px;font-weight:500;color:#55554f}
+.sheet span.h{font-size:15px;font-weight:500;line-height:1.35;color:#77776f;margin-top:12px}
+
+/* ---------- Contact ---------- */
+.contact{padding:clamp(72px,10vw,140px) clamp(16px,4vw,48px);text-align:center}
+.contact h2{font-family:var(--display);font-size:clamp(40px,8vw,120px);line-height:.95;letter-spacing:-.04em}
+.contact h2 .ko{display:block;margin-top:14px;font-size:.3em;font-weight:700;letter-spacing:0;color:var(--mute)}
+.contact a.mail{display:inline-block;margin-top:36px;font-size:clamp(18px,2.4vw,30px);font-weight:600;text-underline-offset:6px}
+footer{padding:0 clamp(16px,4vw,48px) 40px;color:var(--mute);font-size:14px;text-align:center}
+
+@media(max-width:1100px){
+  :root{--sw:36px}
+  .cols{grid-template-columns:minmax(0,1fr);padding:0}
+  .side{position:static;padding:calc(var(--bar) + 36px) 20px 32px}
+  .side.right{display:none}
+  .strip{padding-top:24px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.js .strip{transform:none}.loaded .strip,.scrap{transition:none}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <a class="logo" href="#top">Normade Studio</a>
+  <nav class="pill" aria-label="Main">
+    <a class="on" href="#work">Work<span class="ko" lang="ko">작업</span></a>
+    <a href="#contact">Contact<span class="ko" lang="ko">연락처</span></a>
+  </nav>
+</header>
+
+<main id="top">
+  <div class="cols">
+    <aside class="side left">
+      <h1>Crafted content, right in hands.</h1>
+      <h3>‣ 완성되는 콘텐츠</h3>
+      <p class="hand">Slide each paper aside to see projects<span class="ko" lang="ko">종이를 옆으로 밀어보고 프로젝트 보세요</span></p>
+      <button class="ghost" id="reset" type="button">Stick the papers back<span class="ko" lang="ko">종이 다시 붙이기</span></button>
+      
+    </aside>
+
+    <section class="strip" id="work" aria-label="Projects">
+      <!-- Remplace --bg par url(...) pour tes visuels, et ajuste titres/descriptions -->
+      <article class="proj" style="--bg:linear-gradient(150deg,#ff4d6d,#7b2cbf)">
+        <div class="info"><h3>Seoul100K</h3><p class="meta">Rebranding and character design<span class="ko" lang="ko">리브랜딩 및 캐릭터 디자인</span></p><a class="see" href="seoul100k.html">View project<span class="ko" lang="ko">프로젝트 보기</span></a></div>
+        <div class="scrap" role="button" tabindex="0" aria-label="Tear the paper to reveal Seoul100K"><div class="sheet"><b>Project 1</b><span class="ko" lang="ko">프로젝트 1</span><span class="h">Swipe to peel<br>벗겨보세요</span></div></div>
+      </article>
+      <article class="proj" style="--bg:linear-gradient(150deg,#0b132b,#3a86ff)">
+        <div class="info"><h3>VJing</h3><p class="meta">Motion graphics and live visuals<span class="ko" lang="ko">모션 그래픽 및 라이브 비주얼</span></p><a class="see" href="vjing.html">View project<span class="ko" lang="ko">프로젝트 보기</span></a></div>
+        <div class="scrap" role="button" tabindex="0" aria-label="Tear the paper to reveal VJing"><div class="sheet"><b>Project 2</b><span class="ko" lang="ko">프로젝트 2</span><span class="h">Swipe to peel<br>벗겨보세요</span></div></div>
+      </article>
+      <article class="proj" style="--bg:linear-gradient(150deg,#ffb703,#fb5607)">
+        <div class="info"><h3>Korean Dream</h3><p class="meta">Direction and editing<span class="ko" lang="ko">연출 및 편집</span></p><a class="see" href="korean-dream.html">View project<span class="ko" lang="ko">프로젝트 보기</span></a></div>
+        <div class="scrap" role="button" tabindex="0" aria-label="Tear the paper to reveal Korean Dream"><div class="sheet"><b>Project 3</b><span class="ko" lang="ko">프로젝트 3</span><span class="h">Swipe to peel<br>벗겨보세요</span></div></div>
+      </article>
+      <article class="proj" style="--bg:linear-gradient(150deg,#06d6a0,#073b4c)">
+        <div class="info"><h3>Sports in Motion</h3><p class="meta">Image and movement<span class="ko" lang="ko">이미지와 움직임</span></p><a class="see" href="sports-in-motion.html">View project<span class="ko" lang="ko">프로젝트 보기</span></a></div>
+        <div class="scrap" role="button" tabindex="0" aria-label="Tear the paper to reveal Sports in Motion"><div class="sheet"><b>Project 4</b><span class="ko" lang="ko">프로젝트 4</span><span class="h">Swipe to peel<br>벗겨보세요</span></div></div>
+      </article>
+      <article class="proj" style="--bg:linear-gradient(150deg,#ffafcc,#7b9cff)">
+        <div class="info"><h3>Barbie la Tourmente</h3><p class="meta">2D animated film, direction<span class="ko" lang="ko">2D 애니메이션 영화 연출</span></p><a class="see" href="barbie-la-tourmente.html">View project<span class="ko" lang="ko">프로젝트 보기</span></a></div>
+        <div class="scrap" role="button" tabindex="0" aria-label="Tear the paper to reveal Barbie la Tourmente"><div class="sheet"><b>Project 5</b><span class="ko" lang="ko">프로젝트 5</span><span class="h">Peel me<br>벗겨보세요</span></div></div>
+      </article>
+      <article class="proj" style="--bg:linear-gradient(150deg,#1b1b1b,#e63946)">
+        <div class="info"><h3>TOLH</h3><p class="meta">Music video, direction<span class="ko" lang="ko">뮤직비디오 연출</span></p><a class="see" href="tolh.html">View project<span class="ko" lang="ko">프로젝트 보기</span></a></div>
+        <div class="scrap" role="button" tabindex="0" aria-label="Tear the paper to reveal TOLH"><div class="sheet"><b>Project 6</b><span class="ko" lang="ko">프로젝트 6</span><span class="h">Swipe to peel<br>벗겨보세요</span></div></div>
+      </article>
+      <article class="proj" style="--bg:linear-gradient(150deg,#4361ee,#4cc9f0)">
+        <div class="info"><h3>SuperBlue Marathon</h3><p class="meta">Title design and animation<span class="ko" lang="ko">타이틀 디자인 및 애니메이션</span></p><a class="see" href="superblue-marathon.html">View project<span class="ko" lang="ko">프로젝트 보기</span></a></div>
+        <div class="scrap" role="button" tabindex="0" aria-label="Tear the paper to reveal SuperBlue Marathon"><div class="sheet"><b>Project 7</b><span class="ko" lang="ko">프로젝트 7</span><span class="h">Swipe to peel<br>벗겨보세요</span></div></div>
+      </article>
+      <article class="proj" style="--bg:linear-gradient(150deg,#8d99ae,#2b2d42)">
+        <div class="info"><h3>Galibot</h3><p class="meta">3D props modeling<span class="ko" lang="ko">3D 소품 모델링</span></p><a class="see" href="galibot.html">View project<span class="ko" lang="ko">프로젝트 보기</span></a></div>
+        <div class="scrap" role="button" tabindex="0" aria-label="Tear the paper to reveal Galibot"><div class="sheet"><b>Project 8</b><span class="ko" lang="ko">프로젝트 8</span><span class="h">Swipe to peel<br>벗겨보세요</span></div></div>
+      </article>
+    </section>
+
+  </div>
+
+  <section class="contact" id="contact">
+    <h3>Got a project?</h3>
+    <h3><span class="ko" lang="ko">프로젝트가 있으신가요?</span></h3>
+    <a class="mail" href="mailto:ton@email.com">hello@normadestudio.com</a>
+  </section>
+</main>
+<footer>Normade Studio by Gautier Laurie · Based in Seoul</footer>
+
+<script>
+/* La pellicule descend au chargement */
+requestAnimationFrame(() => requestAnimationFrame(() => document.documentElement.classList.add('loaded')));
+
+/* Lien actif dans la barre */
+const links = [...document.querySelectorAll('.pill a')];
+const io = new IntersectionObserver(es => es.forEach(en => {
+  if (en.isIntersecting) links.forEach(l => l.classList.toggle('on', l.getAttribute('href') === '#' + en.target.id));
+}), { rootMargin: '-45% 0px -45% 0px' });
+['work', 'contact'].forEach(id => io.observe(document.getElementById(id)));
+
+/* Papiers déchirables */
+(() => {
+  const scraps = [...document.querySelectorAll('.scrap')], THRESHOLD = 90;
+  const tear = (s, dx = 0, dy = 600, rot = 0) => {
+    s.classList.remove('drag'); s.classList.add('gone');
+    s.style.transform = `translate(${dx * 3}px,${dy}px) rotate(${rot || (dx >= 0 ? 18 : -18)}deg)`;
+    s.style.opacity = 0;
+    if (navigator.vibrate) navigator.vibrate(15);
+  };
+  scraps.forEach(s => {
+    let sx, sy, dx, dy, moved;
+    s.addEventListener('pointerdown', e => { s.setPointerCapture(e.pointerId); s.classList.add('drag'); sx = e.clientX; sy = e.clientY; dx = dy = 0; moved = false; });
+    s.addEventListener('pointermove', e => {
+      if (!s.classList.contains('drag')) return;
+      dx = e.clientX - sx; dy = e.clientY - sy; moved = true;
+      s.style.transform = `translate(${dx}px,${dy}px) rotate(${dx / 12}deg)`;
+    });
+    const end = () => {
+      if (!s.classList.contains('drag')) return;
+      s.classList.remove('drag');
+      if (Math.hypot(dx, dy) > THRESHOLD) tear(s, dx, Math.max(dy, 200) * 1.5);
+      else { s.style.transform = ''; if (!moved) { s.classList.add('wiggle'); setTimeout(() => s.classList.remove('wiggle'), 500); } }
+    };
+    s.addEventListener('pointerup', end); s.addEventListener('pointercancel', end);
+    s.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); tear(s, 20, 700, 14); } });
+  });
+  document.getElementById('reset').addEventListener('click', () => scraps.forEach(s => { s.classList.remove('gone'); s.style.transform = ''; s.style.opacity = ''; }));
+})();
+</script>
+</body>
+</html>
